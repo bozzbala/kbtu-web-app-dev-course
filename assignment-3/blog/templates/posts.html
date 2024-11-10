@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <div class="main-page">
+        <div class="container">
+            <h1 class="h1">Posts</h1>
+            <div class="list">
+            {% for x in posts %}
+                <div class="post-item">
+                    <a href="/post/{{x.id}}" class="link">{{ x.title }}</a>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
