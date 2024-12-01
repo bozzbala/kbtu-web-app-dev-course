@@ -1,5 +1,5 @@
 """
-URL configuration for server project.
+URL configuration for restfull_blogs_manager project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.1/topics/http/urls/
@@ -15,11 +15,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from blog import views
+from django.urls import include, path
+from django.conf.urls.static import static
+from django.conf import settings
+from rest_framework.authtoken.views import obtain_auth_token 
+
 
 urlpatterns = [
-    path('', views.posts, name='posts'),
-    path('post/<int:post_id>/', views.post, name='post'),
+    path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
+    path("", include("myapp.urls")),
     path('admin/', admin.site.urls),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
